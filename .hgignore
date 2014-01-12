@@ -1,0 +1,6 @@
+syntax: glob
+*.*~
+build/*
+project.bak.xml
+nbproject/private/*
+BSD_License_for_WPILib_code.txt
