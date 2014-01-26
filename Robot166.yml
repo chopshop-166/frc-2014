@@ -116,6 +116,26 @@ Children:
           name: Input Channel (Analog)
           validators: [AnalogInput]
           value: '1'
+    - Name: Accelerometer
+      Base: Accelerometer
+      Children: []
+      Properties:
+        Zero G Volts: !!robotbuilder.data.properties.DoubleProperty {default: 2.5,
+          name: Zero G Volts, validators: null, value: 2.5}
+        Volts Per G: !!robotbuilder.data.properties.DoubleProperty {default: '1',
+          name: Volts Per G, validators: null, value: 1.0}
+        Input Module (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['1', '2']
+          default: '1'
+          name: Input Module (Analog)
+          validators: [AnalogInput]
+          value: '1'
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['1', '2', '3', '4', '5', '6', '7', '8']
+          default: '1'
+          name: Input Channel (Analog)
+          validators: [AnalogInput]
+          value: '2'
     - Name: Ultrasonic
       Base: Ultrasonic
       Children: []
@@ -189,7 +209,7 @@ Children:
           default: '1'
           name: Input Channel (Analog)
           validators: [AnalogInput]
-          value: '2'
+          value: '3'
     - Name: Ball Acquired Limit
       Base: Limit Switch
       Children: []
@@ -200,7 +220,7 @@ Children:
           default: '1'
           name: Input Channel (Digital)
           validators: &id007 [DigitalChannel]
-          value: '6'
+          value: '3'
         Input Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
           choices: &id008 ['1', '2']
           default: '1'
@@ -216,14 +236,14 @@ Children:
           default: '1'
           name: Input Channel (Digital)
           validators: *id007
-          value: '8'
+          value: '4'
         Input Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id008
           default: '1'
           name: Input Module (Digital)
           validators: *id009
           value: '1'
-    - Name: In Guard Limit
+    - Name: In Guard Limt
       Base: Limit Switch
       Children: []
       Properties:
@@ -232,7 +252,7 @@ Children:
           default: '1'
           name: Input Channel (Digital)
           validators: *id007
-          value: '9'
+          value: '5'
         Input Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id008
           default: '1'
@@ -295,59 +315,23 @@ Children:
           name: Output Channel (PWM)
           validators: *id005
           value: '7'
-    - Name: Encoder
-      Base: Indexed Encoder
+    - Name: Reed Switch
+      Base: Digital Input
       Children: []
       Properties:
-        Index Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2']
-          default: '1'
-          name: Index Module (Digital)
-          validators: [DigitalChannel]
-          value: '1'
-        Channel B Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2']
-          default: '1'
-          name: Channel B Module (Digital)
-          validators: [DigitalChannel]
-          value: '1'
-        Channel A Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2']
-          default: '1'
-          name: Channel A Module (Digital)
-          validators: [DigitalChannel]
-          value: '1'
-        PID Source: !!robotbuilder.data.properties.ChoicesProperty
-          choices: [kDistance, kRate]
-          default: kRate
-          name: PID Source
-          validators: null
-          value: kRate
-        Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Distance Per Pulse, validators: null, value: 1.0}
-        Index Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
           choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
             '13', '14']
           default: '1'
-          name: Index Channel (Digital)
+          name: Input Channel (Digital)
           validators: [DigitalChannel]
-          value: '5'
-        Channel B Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
-            '13', '14']
+          value: '6'
+        Input Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['1', '2']
           default: '1'
-          name: Channel B Channel (Digital)
+          name: Input Module (Digital)
           validators: [DigitalChannel]
-          value: '4'
-        Channel A Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
-            '13', '14']
-          default: '1'
-          name: Channel A Channel (Digital)
-          validators: [DigitalChannel]
-          value: '3'
-        Reverse Direction: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Reverse Direction, validators: null, value: false}
+          value: '1'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
@@ -397,7 +381,7 @@ Children:
         name: Number
         validators: *id011
         value: '2'
-  - Name: CoPilot Joy
+  - Name: Copilot Joy
     Base: Joystick
     Children: []
     Properties:
@@ -412,9 +396,11 @@ Children:
   Base: Commands
   Children:
   - Name: Perform Autonomous
-    Base: Command Group
+    Base: Command
     Children: []
     Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   - Name: Tank Drive
@@ -449,7 +435,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Shoulder}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: 'Move Shoulder To Home Position '
+  - Name: Move Shoulder To Home Position
     Base: Command
     Children: []
     Properties:
@@ -457,7 +443,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Shoulder}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: Move Shoulder To Load Shooter
+  - Name: Move Shoulder To Load Position
     Base: Command
     Children: []
     Properties:
@@ -470,7 +456,7 @@ Children:
     Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: None}
+        name: Requires, type: Subsystem, validators: null, value: Shoulder}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   - Name: Spin Roller To Retrieve Ball
@@ -544,22 +530,22 @@ Children:
   Properties: {}
 Properties:
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-    name: Autonomous Command, type: Command, validators: null, value: Perform Autonomous}
+    name: Autonomous Command, type: Command, validators: null, value: None}
   Wiring File: !!robotbuilder.data.properties.FileProperty {default: '', extension: html,
-    folder: false, name: Wiring File, validators: null, value: Wiring.html}
+    folder: false, name: Wiring File, validators: null, value: ''}
   C++ Windriver Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Windriver\workspace',
     extension: null, folder: true, name: C++ Windriver Workspace, validators: null,
     value: 'C:\Windriver\workspace'}
   Use Default Java Package: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Use Default Java Package, validators: null, value: true}
   Java Package: !!robotbuilder.data.properties.StringProperty {default: org.usfirst.frc0000,
-    name: Java Package, validators: null, value: org.usfirst.frc166}
+    name: Java Package, validators: null, value: org.usfirst.frc0000}
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
   Team Number: !!robotbuilder.data.properties.IntegerProperty {default: 0, name: Team Number,
     validators: null, value: 166}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
-  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Matt\NetBeansProjects',
+  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\User\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
-    value: .\}
+    value: 'C:\Users\User\NetBeansProjects'}
