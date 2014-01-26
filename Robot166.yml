@@ -530,22 +530,22 @@ Children:
   Properties: {}
 Properties:
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-    name: Autonomous Command, type: Command, validators: null, value: None}
+    name: Autonomous Command, type: Command, validators: null, value: Perform Autonomous}
   Wiring File: !!robotbuilder.data.properties.FileProperty {default: '', extension: html,
-    folder: false, name: Wiring File, validators: null, value: ''}
+    folder: false, name: Wiring File, validators: null, value: Wiring.html}
   C++ Windriver Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Windriver\workspace',
     extension: null, folder: true, name: C++ Windriver Workspace, validators: null,
     value: 'C:\Windriver\workspace'}
   Use Default Java Package: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Use Default Java Package, validators: null, value: true}
   Java Package: !!robotbuilder.data.properties.StringProperty {default: org.usfirst.frc0000,
-    name: Java Package, validators: null, value: org.usfirst.frc0000}
+    name: Java Package, validators: null, value: org.usfirst.frc166}
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
   Team Number: !!robotbuilder.data.properties.IntegerProperty {default: 0, name: Team Number,
     validators: null, value: 166}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
-  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\User\NetBeansProjects',
+  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Mark\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
-    value: 'C:\Users\User\Documents\NetBeansProjects\chopshop-166.frc-2014'}
+    value: .\}
