@@ -168,7 +168,7 @@ Children:
           value: '2'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
+        name: Default Command, type: Command, validators: null, value: Tank Drive}
   - Name: Shoulder
     Base: Subsystem
     Children:
@@ -334,7 +334,7 @@ Children:
           value: '1'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
+        name: Default Command, type: Command, validators: null, value: Pull Shooter Back}
   - Name: Transmission
     Base: Subsystem
     Children:
@@ -548,4 +548,4 @@ Properties:
     name: Export Commands, validators: null, value: true}
   Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\User\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
-    value: 'C:\Users\User\NetBeansProjects'}
+    value: 'C:\Users\User\Documents\NetBeansProjects\chopshop-166.frc-2014'}
