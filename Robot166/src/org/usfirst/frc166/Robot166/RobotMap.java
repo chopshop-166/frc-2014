@@ -26,6 +26,7 @@ public class RobotMap {
     public static SpeedController driveRightMotorB;
     public static SpeedController driveLeftMotorA;
     public static SpeedController driveLeftMotorB;
+    public static RobotDrive driveDrive4;
     public static Gyro driveGyro;
     public static Accelerometer driveAccelerometer;
     public static Ultrasonic driveUltrasonic;
