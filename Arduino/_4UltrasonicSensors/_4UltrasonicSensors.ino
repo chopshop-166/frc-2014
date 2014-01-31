@@ -11,54 +11,90 @@
 // ---------------------------------------------------------------------------
 #include <NewPing.h>
 
-#define SONAR_NUM     4 // Number or sensors.
 #define MAX_DISTANCE 200 // Maximum distance (in cm) to ping.
-#define PING_INTERVAL 33 // Milliseconds between sensor pings (29ms is about the min to avoid cross-sensor echo).
 
-unsigned long pingTimer[SONAR_NUM]; // Holds the times when the next ping should happen for each sensor.
-unsigned int cm[SONAR_NUM];         // Where the ping distances are stored.
-uint8_t currentSensor = 0;          // Keeps track of which sensor is active.
+int incomingByte ;
+#define S1_TRIGGER_PIN 2
+#define S1_ECHO_PIN 3
+#define S2_TRIGGER_PIN 4
+#define S2_ECHO_PIN 5
+#define S3_TRIGGER_PIN 6
+#define S3_ECHO_PIN 7
+#define S4_TRIGGER_PIN 8
+#define S4_ECHO_PIN 9
 
-NewPing sonar[SONAR_NUM] = {     // Sensor object array.
-  NewPing(2, 3, MAX_DISTANCE), // Each sensor's trigger pin, echo pin, and max distance to ping.
-  NewPing(4, 5, MAX_DISTANCE),
-  NewPing(6, 7, MAX_DISTANCE),
-  NewPing(8, 9, MAX_DISTANCE),
- 
-};
+#define DEBUG 0
+
+
+NewPing sonar1(S1_TRIGGER_PIN , S1_ECHO_PIN, MAX_DISTANCE ); // NewPing setup of pins and maximum distance.
+NewPing sonar2(S2_TRIGGER_PIN , S2_ECHO_PIN, MAX_DISTANCE );
+NewPing sonar3(S3_TRIGGER_PIN , S3_ECHO_PIN, MAX_DISTANCE );
+NewPing sonar4(S4_TRIGGER_PIN , S4_ECHO_PIN, MAX_DISTANCE );
+
+
 
 void setup() {
   Serial.begin(115200);
-  pingTimer[0] = millis() + 75;           // First ping starts at 75ms, gives time for the Arduino to chill before starting.
-  for (uint8_t i = 1; i < SONAR_NUM; i++) // Set the starting time for each sensor.
-    pingTimer[i] = pingTimer[i - 1] + PING_INTERVAL;
+
 }
 
 void loop() {
-  for (uint8_t i = 0; i < SONAR_NUM; i++) { // Loop through all the sensors.
-    if (millis() >= pingTimer[i]) {         // Is it this sensor's time to ping?
-      pingTimer[i] += PING_INTERVAL * SONAR_NUM;  // Set next time this sensor will be pinged.
-      if (i == 0 && currentSensor == SONAR_NUM - 1) oneSensorCycle(); // Sensor ping cycle complete, do something with the results.
-      sonar[currentSensor].timer_stop();          // Make sure previous timer is canceled before starting a new ping (insurance).
-      currentSensor = i;                          // Sensor being accessed.
-      cm[currentSensor] = 0;                      // Make distance zero in case there's no ping echo for this sensor.
-      sonar[currentSensor].ping_timer(echoCheck); // Do the ping (processing continues, interrupt will call echoCheck to look for echo).
+  unsigned int uS = 0; 
+  if (Serial.available() > 0) {
+    // read the incoming byte:
+    incomingByte = Serial.read();
+    // say what you got:
+
+    switch (incomingByte){
+    case 49: //character 1
+      uS = sonar1.ping();
+      if (DEBUG) {
+        Serial.print("Sensor 1: ");
+      }
+      Serial.println(uS / US_ROUNDTRIP_CM); // Convert ping time to distance in cm and print result (0 = outside set distance range)
+      break;
+    case 50: //character 2
+      uS = sonar2.ping();
+       if (DEBUG) {
+        Serial.print("Sensor 2: ");
+      }
+      Serial.println(uS / US_ROUNDTRIP_CM); // Convert ping time to distance in cm and print result (0 = outside set distance range)
+
+      break;
+    case 51: //character 3
+      uS = sonar3.ping();
+       if (DEBUG) {
+        Serial.print("Sensor 3: ");
+      }
+      Serial.println(uS / US_ROUNDTRIP_CM); // Convert ping time to distance in cm and print result (0 = outside set distance range)
+
+      break;
+    case 52: //character 4
+      uS = sonar4.ping();
+       if (DEBUG) {
+        Serial.print("Sensor 4: ");
+      }
+      Serial.println(uS / US_ROUNDTRIP_CM); // Convert ping time to distance in cm and print result (0 = outside set distance range)
+
+      break;
+    default:
+
+      break;
     }
+
+
+
+
   }
-  // The rest of your code would go here.
 }
 
-void echoCheck() { // If ping received, set the sensor distance to array.
-  if (sonar[currentSensor].check_timer())
-    cm[currentSensor] = sonar[currentSensor].ping_result / US_ROUNDTRIP_CM;
-}
+// The rest of your code would go here.
 
-void oneSensorCycle() { // Sensor ping cycle complete, do something with the results.
-  for (uint8_t i = 0; i < SONAR_NUM; i++) {
-    Serial.print(i);
-    Serial.print("=");
-    Serial.print(cm[i]);
-    Serial.print("cm ");
-  }
-  Serial.println();
-}
+
+
+
+
+
+
+
+
