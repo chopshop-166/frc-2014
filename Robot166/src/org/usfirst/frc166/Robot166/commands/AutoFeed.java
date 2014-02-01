@@ -10,6 +10,7 @@
 package org.usfirst.frc166.Robot166.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.usfirst.frc166.Robot166.Robot;
 
 /**
  *
@@ -17,11 +18,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoFeed extends CommandGroup {
 
     public AutoFeed() {
+        addParallel(new MoveShoulderToLoadPosition());
+        addSequential(new SpinRollerToRetrieveBall());
+        addSequential(new WaitForBallAcquired());
+        addSequential(new MoveShoulderToHomePosition());
+        addSequential(new StopRollerSpinning());
+
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());
