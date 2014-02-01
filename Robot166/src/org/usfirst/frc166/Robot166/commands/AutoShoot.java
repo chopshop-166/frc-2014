@@ -17,6 +17,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoShoot extends CommandGroup {
 
     public AutoShoot() {
+
+        addSequential(new PullShooterBack());
+        addSequential(new MoveShoulderToLoadPosition());
+        addSequential(new SpinRollerToEjectBall());
+        addSequential(new StopRollerSpinning());
+        addParallel(new MoveShoulderToHomePosition());
+        addSequential(new ReleaseShooter());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
