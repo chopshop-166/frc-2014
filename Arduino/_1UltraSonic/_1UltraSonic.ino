@@ -13,7 +13,7 @@
 
 #define MAX_DISTANCE 200 // Maximum distance (in cm) to ping.
 
-int incomingByte ;
+char incomingByte ;
 #define S1_TRIGGER_PIN 2
 #define S1_ECHO_PIN 3
 
@@ -32,27 +32,27 @@ void setup() {
 
 void loop() {
   unsigned int uS = 0; 
-  if (Serial.available() > 0) {
+  if (Serial.available()) {
     // read the incoming byte:
     incomingByte = Serial.read();
     // say what you got:
 
-   switch (incomingByte){
-    case 49: //character 1
+   //switch (incomingByte){
+   // case 49: //character 1
       uS = sonar1.ping();
       if (DEBUG) {
         Serial.print("Sensor 1: ");
       }
       Serial.println(uS / US_ROUNDTRIP_CM); // Convert ping time to distance in cm and print result (0 = outside set distance range)
-      break;
-      default:
+     // break;
+    //  default:
       
-      break;
+    //  break;
  
     }
 
   }
-}
+
 
 // The rest of your code would go here.
 
