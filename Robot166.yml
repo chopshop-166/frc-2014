@@ -598,4 +598,4 @@ Properties:
     name: Export Commands, validators: null, value: true}
   Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Dan\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
-    value: .\}
+    value: 'C:\Users\Dan\Documents\NetBeansProjects\chopshop-166.frc-2014'}
