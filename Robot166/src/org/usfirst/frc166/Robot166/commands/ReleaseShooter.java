@@ -27,19 +27,20 @@ public class ReleaseShooter extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.shooter.release();
+        Robot.shooter.releaseShooter();
     }
-    // Make this return true when this Command no longer needs to run execute()
+    // When this Command no longer needs to run execute()
+    // it returns value of reed sensor
     protected boolean isFinished() {
-        return Robot.shooter.checkReed();
+        return Robot.shooter.checkReedValue();
     }
     // Called once after isFinished returns true
     protected void end() {
-        Robot.shooter.stop();
+        Robot.shooter.stopShooter();
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        Robot.shooter.stop();
+        Robot.shooter.stopShooter();
     }
 }
