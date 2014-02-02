@@ -20,7 +20,7 @@ public class AutoShoot extends CommandGroup {
 
         addSequential(new PullShooterBack());
         addSequential(new MoveShoulderToLoadPosition());
-        addSequential(new SpinRollerToEjectBall());
+        addSequential(new SpinRollerToRetrieveBall());
         addSequential(new StopRollerSpinning());
         addParallel(new MoveShoulderToHomePosition());
         addSequential(new ReleaseShooter());
