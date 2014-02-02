@@ -37,7 +37,7 @@ public class MoveShoulderToHomePosition extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.shoulder.isHomePos());
+        return (Robot.shoulder.isHomePosition());
     }
 
     // Called once after isFinished returns true
