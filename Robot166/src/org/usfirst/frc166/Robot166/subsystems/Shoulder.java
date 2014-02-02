@@ -10,7 +10,6 @@
 package org.usfirst.frc166.Robot166.subsystems;
 
 import org.usfirst.frc166.Robot166.RobotMap;
-import org.usfirst.frc166.Robot166.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
