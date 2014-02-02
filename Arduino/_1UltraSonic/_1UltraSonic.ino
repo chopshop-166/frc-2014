@@ -16,7 +16,7 @@
 char incomingByte ;
 #define S1_TRIGGER_PIN 2
 #define S1_ECHO_PIN 3
-
+#define MAX_ITERATIONS 3
 
 #define DEBUG 0
 
@@ -39,7 +39,7 @@ void loop() {
 
    //switch (incomingByte){
    // case 49: //character 1
-      uS = sonar1.ping();
+      uS = sonar1.ping_median(MAX_ITERATIONS);
       if (DEBUG) {
         Serial.print("Sensor 1: ");
       }
