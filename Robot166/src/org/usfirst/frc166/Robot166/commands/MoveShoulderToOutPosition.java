@@ -32,12 +32,12 @@ public class MoveShoulderToOutPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.shoulder.moveToOut();
+        Robot.shoulder.moveToOutPosition();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.shoulder.getOutLmt());
+        return (Robot.shoulder.isShoulderOut());
     }
 
     // Called once after isFinished returns true
