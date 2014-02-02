@@ -41,11 +41,11 @@ public class Shoulder extends Subsystem {
     }
 
     public boolean isShoulderOut() {
-        return RobotMap.shoulderOutGuardLimit.get();
+        return outGuardLimit.get();
     }
 
     public boolean isShoulderIn() {
-        return RobotMap.shoulderInGuardLimt.get();
+        return inGuardLimt.get();
     }
 
     private double getPotValue() {
