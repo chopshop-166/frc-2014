@@ -36,7 +36,7 @@ public class Shoulder extends Subsystem {
     }
 
     public boolean isHomePosition() {
-        return (getPotValue() >= HOME_POSITION_LOW && getPotValue() <= HOME_POSITION_HIGH);
+        return (getPotentiometerValue() >= HOME_POSITION_LOW && getPotentiometerValue() <= HOME_POSITION_HIGH);
     }
 
     public boolean isShoulderOut() {
@@ -47,15 +47,15 @@ public class Shoulder extends Subsystem {
         return inGuardLimt.get();
     }
 
-    private double getPotValue() {
+    private double getPotentiometerValue() {
         return potentiometer.getVoltage();
     }
 
     public void moveToHome() {
-        if (getPotValue() > HOME_POSITION_HIGH) {
+        if (getPotentiometerValue() > HOME_POSITION_HIGH) {
             motor.set(SHOULDER_SPEED * -1);
         }
-        if (getPotValue() < HOME_POSITION_LOW) {
+        if (getPotentiometerValue() < HOME_POSITION_LOW) {
             motor.set(SHOULDER_SPEED);
         }
     }
