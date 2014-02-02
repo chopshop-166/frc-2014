@@ -31,19 +31,19 @@ public class Roller extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 
-    private static final double ROLLSPEED = 0;
+    private static final double ROLLSPEED = 10;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    public void BallIntake() {
+    public void ballIntake() {
         motor.set(ROLLSPEED);
     }
 
-    public void BallEject() {
+    public void ballExpel() {
         motor.set(ROLLSPEED * (-1));
     }
 
-    public void RollingStop() {
+    public void stopRolling() {
         motor.set(0);
     }
 

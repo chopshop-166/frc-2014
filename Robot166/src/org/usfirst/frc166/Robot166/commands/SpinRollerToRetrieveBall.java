@@ -29,7 +29,7 @@ public class SpinRollerToRetrieveBall extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.roller.BallIntake();
+        Robot.roller.ballIntake();
     }
 
     // Called repeatedly when this Command is scheduled to run
