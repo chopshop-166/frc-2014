@@ -32,4 +32,27 @@ public class Transmission extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+
+    //Initialization function for the transmission. Executed when Instantiated.
+    public Transmission() {
+        super();                //Allow higher level software to initialize first
+        compressor.start();     //Start Kompressor System
+        solenoid.set(false);    //Turns off solenoid
+    }
+
+    //Function to set transmission to high speed
+    public void shiftToHighGear() {
+        solenoid.set(true); // Turns on Solenoid        
+    }
+
+    //Function to set transmission to low speed
+    public void shiftToLowGear() {
+        solenoid.set(false); // Turns off Solenoid  
+    }
+
+    //Function to set transmission to high speed
+    public boolean isReady() {
+        return true;
+        //Need to replace with pressure sensor read
+    }
 }
