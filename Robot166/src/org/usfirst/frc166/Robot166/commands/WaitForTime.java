@@ -17,6 +17,10 @@ import org.usfirst.frc166.Robot166.Robot;
  */
 public class WaitForTime extends Command {
 
+    // These define the amount of time left in teleop when a  command
+    // will be executed
+    private static final double SAFE_SHOOTER_TIME = 3;
+
     public WaitForTime() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -32,6 +36,11 @@ public class WaitForTime extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        double teleopLeft = Robot.timing.getRemainingTeleopTime();
+
+        if (teleopLeft < SAFE_SHOOTER_TIME) {
+            Robot.timing.makeShooterSafe();
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
