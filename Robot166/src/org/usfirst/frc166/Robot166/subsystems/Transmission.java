@@ -52,7 +52,12 @@ public class Transmission extends Subsystem {
 
     //Function to set transmission to high speed
     public boolean isReady() {
-        return true;
-        //Need to replace with pressure sensor read
+        //If pressure sensor is greater than 1.2 volts, which is approximately 44 PSI
+        if (pressureSensor.getVoltage() > 1.2) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
