@@ -36,7 +36,7 @@ public class RobotMap {
     public static DigitalInput shoulderInGuardLimt;
     public static SpeedController rollerMotor;
     public static SpeedController shooterMotor;
-    public static DigitalInput shooterReedSwitch;
+    public static DigitalInput shooterLimitSwitch;
     public static Solenoid transmissionSolenoid;
     public static Compressor transmissionCompressor;
     public static AnalogChannel transmissionPressureSensor;
@@ -94,8 +94,8 @@ public class RobotMap {
         shooterMotor = new Victor(1, 7);
         LiveWindow.addActuator("Shooter", "Motor", (Victor) shooterMotor);
 
-        shooterReedSwitch = new DigitalInput(1, 6);
-        LiveWindow.addSensor("Shooter", "Reed Switch", shooterReedSwitch);
+        shooterLimitSwitch = new DigitalInput(1, 6);
+        LiveWindow.addSensor("Shooter", "Limit Switch", shooterLimitSwitch);
 
         transmissionSolenoid = new Solenoid(1, 1);
         LiveWindow.addActuator("Transmission", "Solenoid", transmissionSolenoid);

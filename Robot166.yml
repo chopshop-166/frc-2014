@@ -359,7 +359,7 @@ Children:
           name: Output Channel (PWM)
           validators: *id005
           value: '7'
-    - Name: Reed Switch
+    - Name: Limit Switch
       Base: Digital Input
       Children: []
       Properties:
@@ -378,7 +378,7 @@ Children:
           value: '1'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: Pull Shooter Back}
+        name: Default Command, type: Command, validators: null, value: None}
   - Name: Transmission
     Base: Subsystem
     Children:
