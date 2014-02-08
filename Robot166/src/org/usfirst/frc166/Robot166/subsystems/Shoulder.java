@@ -27,7 +27,6 @@ public class Shoulder extends Subsystem {
     public static final double SHOULDER_SPEED = 10;
     public static final double HOME_POSITION_HIGH = 20;//rename to home position
     public static final double HOME_POSITION_LOW = 10;//rename to home position
-    public static double yJoy;
 
     // Put methods for controlling this subsystem
     public void initDefaultCommand() {
@@ -71,8 +70,9 @@ public class Shoulder extends Subsystem {
         motor.set(SHOULDER_SPEED * -1);
     }
 
-    public void shoulderDrive() {
-        // yJoy = shoulderJoy.getAxis(Joystick.AxisType.kY);
-        motor.set(yJoy);
+    public void shoulderDrive(Joystick shoulderJoy) {
+
+        motor.set(shoulderJoy.getAxis(Joystick.AxisType.kY));
+
     }
 }
