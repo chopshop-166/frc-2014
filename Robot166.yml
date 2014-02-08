@@ -28,25 +28,21 @@ Children:
           name: Input Channel (Analog)
           validators: [AnalogInput]
           value: '1'
-    - Name: Accelerometer
-      Base: Accelerometer
+    - Name: Temperature
+      Base: Analog Input
       Children: []
       Properties:
-        Zero G Volts: !!robotbuilder.data.properties.DoubleProperty {default: 2.5,
-          name: Zero G Volts, validators: null, value: 2.5}
-        Volts Per G: !!robotbuilder.data.properties.DoubleProperty {default: '1',
-          name: Volts Per G, validators: null, value: 1.0}
         Input Module (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2']
+          choices: &id010 ['1', '2']
           default: '1'
           name: Input Module (Analog)
-          validators: [AnalogInput]
+          validators: &id011 [AnalogInput]
           value: '1'
         Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2', '3', '4', '5', '6', '7', '8']
+          choices: &id012 ['1', '2', '3', '4', '5', '6', '7', '8']
           default: '1'
           name: Input Channel (Analog)
-          validators: [AnalogInput]
+          validators: &id013 [AnalogInput]
           value: '2'
     - Name: Ultrasonic
       Base: Ultrasonic
@@ -359,7 +355,7 @@ Children:
           name: Output Channel (PWM)
           validators: *id005
           value: '7'
-    - Name: Limit Switch
+    - Name: Shooter Ready
       Base: Digital Input
       Children: []
       Properties:
@@ -375,6 +371,22 @@ Children:
           default: '1'
           name: Input Module (Digital)
           validators: [DigitalChannel]
+          value: '1'
+    - Name: Ball Loaded
+      Base: Limit Switch
+      Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Input Channel (Digital)
+          validators: *id007
+          value: '7'
+        Input Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: '1'
+          name: Input Module (Digital)
+          validators: *id009
           value: '1'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
@@ -432,16 +444,16 @@ Children:
       Children: []
       Properties:
         Input Module (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2']
+          choices: *id010
           default: '1'
           name: Input Module (Analog)
-          validators: [AnalogInput]
+          validators: *id011
           value: '1'
         Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2', '3', '4', '5', '6', '7', '8']
+          choices: *id012
           default: '1'
           name: Input Channel (Analog)
-          validators: [AnalogInput]
+          validators: *id013
           value: '4'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
@@ -467,30 +479,30 @@ Children:
     Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: &id010 ['1', '2', '3', '4']
+        choices: &id014 ['1', '2', '3', '4']
         default: 1
         name: Number
-        validators: &id011 [Joystick]
+        validators: &id015 [Joystick]
         value: '1'
   - Name: Right Drive Joy
     Base: Joystick
     Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: *id010
+        choices: *id014
         default: 1
         name: Number
-        validators: *id011
+        validators: *id015
         value: '2'
   - Name: Copilot Joy
     Base: Joystick
     Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: *id010
+        choices: *id014
         default: 1
         name: Number
-        validators: *id011
+        validators: *id015
         value: '3'
   Properties: {}
 - Name: Commands
