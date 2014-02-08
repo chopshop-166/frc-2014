@@ -9,8 +9,10 @@
 // it from being updated in the future.
 package org.usfirst.frc166.Robot166.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc166.Robot166.Robot;
+import org.usfirst.frc166.Robot166.OI;
 
 /**
  *
@@ -31,7 +33,7 @@ public class ControlShoulderWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.shoulder.shoulderDrive();
+        Robot.shoulder.shoulderDrive(Robot.oi.copilotJoy);
     }
 
     // Make this return true when this Command no longer needs to run execute()
