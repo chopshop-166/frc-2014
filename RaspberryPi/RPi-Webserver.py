@@ -1,3 +1,4 @@
+#!/usr/bin/python
 ########################################################################
 ###
 ### Simple proof of concept webserver that allows to reading info from
