@@ -15,7 +15,7 @@
 
 char incomingByte ;
 #define S1_TRIGGER_PIN 2
-#define S1_ECHO_PIN 3
+#define S1_ECHO_PIN 2
 #define MAX_ITERATIONS 3
 
 #define DEBUG 0
