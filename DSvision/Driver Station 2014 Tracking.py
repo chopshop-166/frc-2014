@@ -1,7 +1,23 @@
 
 import cv2
 import numpy
-    
+import math
+
+from pynetworktables import *
+
+NetworkTable.SetIPAddress("10.1.66.2") #Connect to network tables on robot
+NetworkTable.SetClientMode()
+NetworkTable.Initialize()
+
+visionDataTable = NetworkTable.GetTable("visionDataTable") #Connect specifically to vision NetworkTable
+
+visionDataTable.PutBoolean("isHot",False) #Define default values for Network Table Variables
+visionDataTable.PutNumber("skinnyOffset",0.0)
+
+def find_distance(x1,y1,x2,y2):
+    root = math.sqrt(  ((x2 - x1) ** 2) + ((y2 - y1) ** 2)  )
+    rootInt = int(root)
+    return rootInt
 
 def threshold_range(im, lo, hi):
     '''Returns a binary image if the values are between a certain value'''
@@ -17,8 +33,7 @@ if not vc.open('http://10.1.66.11/mjpg/video.mjpg'): #connect to Axis Camera
 #if not vc.open(0): #connect to Webcam
     print "Could not connect to camera"
     exit(1)
-i = 0
-while cv2.waitKey(1) <= 0:
+while cv2.waitKey(10) <= 0:
 #while i == 0:
     success, img = vc.read()
     if not success:
@@ -52,10 +67,11 @@ while cv2.waitKey(1) <= 0:
     w = []
     h = []
     a = []
-    skinnyParticle = 0
-    fatParticle = 0
-    skinnyX = 0
-    for hidx, contour, in enumerate(simplecontours):
+    fatParticles = []
+    skinnyParticles = []
+    isFat = 0
+    isSkinny = 0
+    for partCount, contour, in enumerate(simplecontours):
                (xtemp, ytemp, wtemp, htemp) = cv2.boundingRect(contour) #Determine x,y,w,h by drawing a rectangle on contour
                
                x.append(xtemp + (wtemp/2)) #put x,y,w,h for each particle in an array
@@ -65,7 +81,9 @@ while cv2.waitKey(1) <= 0:
                a.append(wtemp * htemp)
                atemp = wtemp * htemp       
 
-               if atemp > 200: #Print particle data if area > 400
+               #Keep in mind, x and y are the actual centers, but xtemp and ytemp is the upper left corner
+               
+               if atemp > 200: #Print particle data if area > 200
                           cv2.circle(color,(xtemp + (wtemp/2) ,ytemp + (htemp/2)),2,(0,255,0),thickness = -1)
                           tempstring = " (%d,%d)" % (xtemp, ytemp)
                           cv2.putText(color, tempstring, (xtemp + wtemp,ytemp + (htemp/2)), cv2.FONT_HERSHEY_PLAIN, 1, (255,0,255), thickness = 1)
@@ -73,19 +91,67 @@ while cv2.waitKey(1) <= 0:
                           cv2.putText(color, "%d" %(htemp), (xtemp - 30 ,ytemp + (htemp/2)), cv2.FONT_HERSHEY_PLAIN, 1, (255,0,255), thickness = 1)
 
                if (wtemp > (htemp * 3)):
-                         fatParticle = 1
+                         fatParticles.append(partCount)
 
                if (htemp > (wtemp * 3)):
-                         skinnyParticle = 1
-                         skinnyX = (xtemp + (wtemp/2)) - 180
+                         skinnyParticles.append(partCount)
+               
+    cv2.putText(color, "Skinny Particles: %d" %(len(skinnyParticles)) , (320,470), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), thickness = 1)
+    cv2.putText(color, "Fat Particles: %d" %(len(fatParticles)) , (0,470), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), thickness = 1)
+    i = 0
+    hot = 0
+    if (len(skinnyParticles) > 0):
+        if (len(fatParticles) > 0):
+                   for i in range(0, len(fatParticles)):
+                       for j in range(0, len(skinnyParticles)):
+                             #print find_distance(x[fatParticles[i]],y[fatParticles[i]],x[skinnyParticles[j]], y[skinnyParticles[j]])
+                             cv2.line(color,(x[fatParticles[i]], y[fatParticles[i]]),(x[skinnyParticles[j]], y[skinnyParticles[j]]),(255,0,0), thickness = 1)
+                                       
+                             cv2.putText(color, " %d" %(find_distance(x[fatParticles[i]],y[fatParticles[i]],x[skinnyParticles[j]], y[skinnyParticles[j]])) ,
+                                               (((x[fatParticles[i]] + x[skinnyParticles[j]])/2 ),(y[fatParticles[i]] + y[skinnyParticles[j]]) / 2 ),
+                                               cv2.FONT_HERSHEY_PLAIN, 1, (255,0,0))
+                             
+                             if (find_distance(x[fatParticles[i]],y[fatParticles[i]],x[skinnyParticles[j]], y[skinnyParticles[j]]) < 150) :
+                                 
 
-    if fatParticle == 1 and skinnyParticle == 1:
-               cv2.putText(color, "That's Hot" , (0,32), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), thickness = 2) #Print ridiculous statement if both skinny/fat present
+                                       chosenSkinny = j            
+                                       cv2.putText(color, "Close enough: HOT" , (0,16), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), thickness = 1)
+                                       hot = 1
+                
+                   if (hot==0):
+                       cv2.putText(color, "Far away: NOT HOT" , (0,16), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), thickness = 1)
+       
+
+        else:
+                   cv2.putText(color, "No fat Particles, eat more" , (0,16), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), thickness = 1)
+
+    else:
+        if (len(fatParticles) > 0):
+            cv2.putText(color, "Get me a skinny particle, then we can talk" , (0,16), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), thickness = 1)
 
 
+    if (len(fatParticles) == 0) and (len(skinnyParticles) == 0):
+        cv2.putText(color, "No particles, we are blind" , (0,16), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), thickness = 1)
 
-    cv2.imshow("Contours", color)
-    i = 1
+    if (hot == 1):
+        visionDataTable.PutBoolean("isHot",True)
+
+    else:
+        visionDataTable.PutBoolean("isHot",False)
+
+
+        
+    if (len(x) > 0):
+        skinnyOffset = (x[0] - 320.0) / 320.0
+        cv2.putText(color, "Skinny Offset: %f" %(skinnyOffset) , (320,440), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), thickness = 1)
+        visionDataTable.PutNumber("skinnyOffset",skinnyOffset)
+
+    else:
+        visionDataTable.PutNumber("skinnyOffset",0.0)
+        
+
+    
+    cv2.imshow("Cameras are awesome :D", color)
 
     
     
