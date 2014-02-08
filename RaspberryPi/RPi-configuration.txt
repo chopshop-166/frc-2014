@@ -1,0 +1,22 @@
+* Start with stock Raspbian
+* Install python-serial
+aka pyserial
+* initial boot: 47 seconds
+* disabled 
+- apache2 apache2-mpm-worker -- remove
+- ntp -- remove
+* disable sound
+# /etc/modules: kernel modules to load at boot time.
+#
+# This file contains the names of kernel modules that should be loaded
+# at boot time, one per line. Lines beginning with "#" are ignored.
+# Parameters can be specified after the module name.
+
+#snd-bcm2835
+
+* final boot: 33 seconds
+
+* added RPi-Webserver.py to cron (as root)
+
+@reboot /home/pi/RPi-Webserver.py
+
