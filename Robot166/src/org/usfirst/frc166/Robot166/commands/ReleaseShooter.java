@@ -34,7 +34,7 @@ public class ReleaseShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.shooter.fireShooter();
+        Robot.shooter.pullShooterBack();
     }
 
     // When this Command no longer needs to run execute()
@@ -51,6 +51,6 @@ public class ReleaseShooter extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        Robot.shooter.stopShooter();
+        end();
     }
 }

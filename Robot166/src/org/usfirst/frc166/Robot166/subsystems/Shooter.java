@@ -32,14 +32,18 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public static final double MOTORSPEED = 10;
+    public static final double MOTORSPEED = .8;
 
     //Return whether Reed value is true or false
     public boolean isCockedBack() {
-        return shooterReady.get();
+        return !shooterReady.get();
+    }
+    
+    public boolean isBallLoaded(){
+        return ballLoaded.get();
     }
 
-    //Set motor speed to -1 so shooter is pulled back
+    //Set motor speed to 1 so shooter is pulled back
     public void pullShooterBack() {
         motor.set(MOTORSPEED);
     }
@@ -48,7 +52,11 @@ public class Shooter extends Subsystem {
     public void fireShooter() {
         motor.set(MOTORSPEED);
     }
-
+    
+    public void reverseShooter(){
+        motor.set(-MOTORSPEED);
+    }
+    
     //Set shooter speed to 0 (stopped)
     public void stopShooter() {
         motor.set(0);

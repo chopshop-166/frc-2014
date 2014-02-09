@@ -18,12 +18,10 @@ public class AutoShoot extends CommandGroup {
 
     public AutoShoot() {
 
-        addSequential(new PullShooterBack());
-        addSequential(new MoveShoulderToLoadPosition());
-        addSequential(new SpinRollerToRetrieveBall());
-        addSequential(new StopRollerSpinning());
-        addParallel(new MoveShoulderToHomePosition());
         addSequential(new ReleaseShooter());
+        addSequential(new PullShooterBack());
+       
+        
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
