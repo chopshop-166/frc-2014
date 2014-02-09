@@ -75,4 +75,8 @@ public class Shoulder extends Subsystem {
         motor.set(shoulderJoy.getAxis(Joystick.AxisType.kY));
 
     }
+
+    public boolean isBallAcquired() {
+        return ballAcquiredLimit.get();
+    }
 }
