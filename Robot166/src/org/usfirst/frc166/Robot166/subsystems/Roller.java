@@ -31,7 +31,7 @@ public class Roller extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 
-    private static final double ROLLSPEED = 10;
+    private static final double ROLLSPEED = .800;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
