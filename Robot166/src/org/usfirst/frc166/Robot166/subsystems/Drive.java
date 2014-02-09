@@ -38,11 +38,12 @@ public class Drive extends Subsystem {
     private static final double DRIVE_TURN_CONSTANT = 0.60;
 
     public void TankDrive4() {
-        driveVictors.tankDrive(Robot.oi.leftDriveJoy,
-                Robot.oi.rightDriveJoy);
+        driveVictors.tankDrive(-Robot.oi.getLeftDriveJoy().getY(),
+                -Robot.oi.getRightDriveJoy().getY());
     }
 
     public void DriveStraight() {
+
         if (Robot.drive.gyro.getAngle() != 0) {
             if ((Robot.drive.gyro.getAngle() % 360) - 180 > 0) {
                 driveVictors.drive(DRIVE_SPEED, -DRIVE_TURN_CONSTANT);
@@ -69,7 +70,7 @@ public class Drive extends Subsystem {
         HttpConnection c = null;
         InputStream is = null;
         int rc;
-        String DataURL = "http://10.1.66.50";
+        String DataURL = "http://10.1.66.228";
         try {
             c = (HttpConnection) Connector.open(DataURL);
             // Getting the response code will open the connection,
@@ -92,6 +93,7 @@ public class Drive extends Subsystem {
             }
             // Do something here to convert 'data' to a string...
             String dataString = new String(data);
+            System.out.println(Integer.parseInt(dataString));
             return Integer.parseInt(dataString);
         }
         catch (ClassCastException e) {
