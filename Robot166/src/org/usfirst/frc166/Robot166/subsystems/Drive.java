@@ -12,6 +12,7 @@ package org.usfirst.frc166.Robot166.subsystems;
 import org.usfirst.frc166.Robot166.RobotMap;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.microedition.io.Connector;
@@ -59,7 +60,12 @@ public class Drive extends Subsystem {
 
     public boolean isWallNear() {
         try {
-            return getViaHttpConnection() < 30;
+            int distance = getViaHttpConnection();
+            if(distance == 0){
+                distance = 666;
+            }
+            SmartDashboard.putNumber("wall distance: ", distance);
+            return distance < 30;
         }
         catch (IOException e) {
             return false;
@@ -70,13 +76,14 @@ public class Drive extends Subsystem {
         HttpConnection c = null;
         InputStream is = null;
         int rc;
-        String DataURL = "http://10.1.66.228";
+        String DataURL = "http://10.1.66.228/";
         try {
             c = (HttpConnection) Connector.open(DataURL);
             // Getting the response code will open the connection,
             // send the request, and read the HTTP response headers.
             // The headers are stored until requested.
             rc = c.getResponseCode();
+            System.out.println("rc: " + rc);
             if (rc != HttpConnection.HTTP_OK) {
                 throw new IOException("HTTP response code: " + rc);
             }
@@ -86,13 +93,13 @@ public class Drive extends Subsystem {
             // Get the length and process the data
             int actual = 0;
             int bytesread = 0;
-            byte[] data = new byte[2];
-            while ((bytesread != 2) && (actual != -1)) {
-                actual = is.read(data, bytesread, 2 - bytesread);
+            byte[] data = new byte[4];
+            while ((bytesread != data.length) && (actual != -1)) {
+                actual = is.read(data, bytesread, data.length - bytesread);
                 bytesread += actual;
             }
             // Do something here to convert 'data' to a string...
-            String dataString = new String(data);
+            String dataString = new String(data).trim();
             System.out.println(Integer.parseInt(dataString));
             return Integer.parseInt(dataString);
         }
