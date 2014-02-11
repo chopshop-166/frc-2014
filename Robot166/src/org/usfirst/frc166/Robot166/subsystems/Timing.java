@@ -90,9 +90,8 @@ public class Timing extends Subsystem {
      * Starts the command to make the shooter safe.
      */
     public void makeShooterSafe() {
-        if (wasMakeShooterSafeRun) {
+        if (!wasMakeShooterSafeRun) {
             new StartCommand(new MakeShooterSafe()).start();
-            System.out.println("Ran ShooterSafe");
             wasMakeShooterSafeRun = true;
         }
     }

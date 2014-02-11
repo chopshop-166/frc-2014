@@ -28,9 +28,12 @@ public class MakeShooterSafe extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (!Robot.shooter.isCockedBack() && !Robot.shooter.isBallLoaded()) {
+
+        // If the shooter is not cocked, disable the command by setting a
+        // timeout of zero
+        if (!Robot.shooter.isCockedBack()) {
             setTimeout(0);
-        } 
+        }
         else {
             setTimeout(Robot.prefs.getDouble("ShooterSafeTime", 0));
         }
