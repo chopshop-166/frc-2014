@@ -69,6 +69,10 @@ public class Timing extends Subsystem {
         return autonomousLength - (Timer.getFPGATimestamp() - autonomousStartTime);
     }
 
+    public double getCurrentAutonomousTime() {
+        return (Timer.getFPGATimestamp() - autonomousStartTime);
+    }
+
     /**
      * Set up the timing subsystem for the teleop period
      */

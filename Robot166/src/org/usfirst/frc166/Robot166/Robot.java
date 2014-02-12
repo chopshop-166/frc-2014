@@ -71,7 +71,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         timing.autonomousStart();
-
+        vision.initHotValues();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) {
             autonomousCommand.start();
