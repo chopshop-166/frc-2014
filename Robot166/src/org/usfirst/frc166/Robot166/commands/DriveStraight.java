@@ -14,6 +14,12 @@ import org.usfirst.frc166.Robot166.Robot;
  *
  */
 public class DriveStraight extends Command {
+<<<<<<< local
+
+    boolean hasDriven = false;
+
+=======
+>>>>>>> other
     public DriveStraight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -23,10 +29,15 @@ public class DriveStraight extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
+<<<<<<< local
+        hasDriven = false;
+=======
+>>>>>>> other
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.drive.driveStraight();
+        Robot.drive.driveStraightNoGyro();
+        //Robot.drive.driveStraight();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
