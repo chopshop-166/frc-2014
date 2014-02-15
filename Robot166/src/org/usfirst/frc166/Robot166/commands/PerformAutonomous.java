@@ -19,12 +19,12 @@ public class PerformAutonomous extends CommandGroup {
 
     public PerformAutonomous() {
         addSequential(new ShiftTransmissionPower());
+        addSequential(new PerformVisionAction(), 2);
         addSequential(new MoveShoulderToOutPosition());
-        addSequential(new PerformVisionAction(), 1);
         addSequential(new DriveStraight(), 2);
         addSequential(new AutonomousWait());
-        addSequential(new ReleaseShooter());
-        addSequential(new PullShooterBack());
+        //addSequential(new ReleaseShooter());
+        //addSequential(new PullShooterBack());
         addSequential(new ShiftTransmissionSpeed());
 
         //addParallel(new PerformVisionAction());
