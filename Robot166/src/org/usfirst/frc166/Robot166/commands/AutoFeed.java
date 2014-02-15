@@ -20,7 +20,7 @@ public class AutoFeed extends CommandGroup {
     public AutoFeed() {
         addSequential(new SpinRollerToRetrieveBall());
         addSequential(new MoveShoulderToOutPosition());
-        addSequential(new WaitForBallAcquired());
+        addSequential(new WaitForBallAcquired(), 5);
         addSequential(new StopRollerSpinning());
         addSequential(new MoveShoulderToHomePosition());
 
