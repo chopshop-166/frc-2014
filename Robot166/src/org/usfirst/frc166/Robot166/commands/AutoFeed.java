@@ -18,8 +18,8 @@ import org.usfirst.frc166.Robot166.Robot;
 public class AutoFeed extends CommandGroup {
 
     public AutoFeed() {
-        addParallel(new MoveShoulderToOutPosition());
         addSequential(new SpinRollerToRetrieveBall());
+        addSequential(new MoveShoulderToOutPosition());
         addSequential(new WaitForBallAcquired());
         addSequential(new StopRollerSpinning());
         addSequential(new MoveShoulderToHomePosition());
