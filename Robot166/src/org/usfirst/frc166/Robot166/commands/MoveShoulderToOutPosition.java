@@ -11,6 +11,7 @@ package org.usfirst.frc166.Robot166.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc166.Robot166.Robot;
+import org.usfirst.frc166.Robot166.subsystems.Shoulder;
 
 /**
  *
@@ -43,11 +44,13 @@ public class MoveShoulderToOutPosition extends Command {
     // Called once after isFinished returns true
     protected void end() {
         Robot.shoulder.stop();
+        Robot.shoulder.setShoulderLocation(Shoulder.Position.Out);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
+        Robot.shoulder.stop();
+        Robot.shoulder.setShoulderLocation(Shoulder.Position.Unknown);
     }
 }
