@@ -17,7 +17,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class FireShooter extends CommandGroup {
 
     public FireShooter() {
+        addSequential(new MoveShoulderToOutPosition());
         addSequential(new ReleaseShooter());
-        addSequential(new PullShooterBack());
+        addParallel(new PullShooterBack());
+        addParallel(new MoveShoulderToHomePosition());
     }
 }
