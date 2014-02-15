@@ -479,30 +479,103 @@ Children:
     Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: &id014 ['1', '2', '3', '4']
+        choices: &id017 ['1', '2', '3', '4']
         default: 1
         name: Number
-        validators: &id015 [Joystick]
+        validators: &id018 [Joystick]
         value: '1'
   - Name: Right Drive Joy
     Base: Joystick
-    Children: []
+    Children:
+    - Name: Auto Feed Button
+      Base: Joystick Button
+      Children: []
+      Properties:
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: &id014 [TypeDropdownSelected]
+          value: Auto Feed
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id015 ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+            '12']
+          default: '1'
+          name: Button
+          validators: null
+          value: '3'
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Right Drive Joy}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id016 [whileHeld, whenPressed, whenReleased]
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+    - Name: Shift High Speed Button
+      Base: Joystick Button
+      Children: []
+      Properties:
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id014
+          value: Shift Transmission Speed
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id015
+          default: '1'
+          name: Button
+          validators: null
+          value: '5'
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Right Drive Joy}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id016
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+    - Name: Shift Low Speed Button
+      Base: Joystick Button
+      Children: []
+      Properties:
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id014
+          value: Shift Transmission Power
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id015
+          default: '1'
+          name: Button
+          validators: null
+          value: '4'
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Right Drive Joy}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id016
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: *id014
+        choices: *id017
         default: 1
         name: Number
-        validators: *id015
+        validators: *id018
         value: '2'
   - Name: Copilot Joy
     Base: Joystick
     Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: *id014
+        choices: *id017
         default: 1
         name: Number
-        validators: *id015
+        validators: *id018
         value: '3'
   Properties: {}
 - Name: Commands

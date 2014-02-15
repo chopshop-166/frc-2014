@@ -42,12 +42,12 @@ public class Transmission extends Subsystem {
 
     //Function to set transmission to high speed
     public void shiftToHighGear() {
-        solenoid.set(true); // Turns on Solenoid        
+        solenoid.set(false); // Turns off Solenoid
     }
 
     //Function to set transmission to low speed
     public void shiftToLowGear() {
-        solenoid.set(false); // Turns off Solenoid  
+        solenoid.set(true); // Turns on Solenoid
     }
 
     //Function to set transmission to high speed
