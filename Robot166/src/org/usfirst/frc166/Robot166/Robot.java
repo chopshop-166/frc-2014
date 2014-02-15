@@ -67,6 +67,7 @@ public class Robot extends IterativeRobot {
 
         timing.setAutonomousLength(10);
         prefs = Preferences.getInstance();
+        vision.initHotValues();
     }
 
     public void autonomousInit() {
