@@ -66,17 +66,18 @@ public class Drive extends Subsystem {
 //determines whether wall is close enough for stop
 
     public boolean isWallNear() {
-        try {
-            int distance = getUltrasonicVal();
-            if (distance == 0) {
-                distance = 666;
-            }
-            SmartDashboard.putNumber("wall distance: ", distance);
-            return distance < 90;
-        }
-        catch (IOException e) {
-            return false;
-        }
+        return false;
+//        try {
+//            int distance = getUltrasonicVal();
+//            if (distance == 0) {
+//                distance = 666;
+//            }
+//            SmartDashboard.putNumber("wall distance: ", distance);
+//            return distance < 90;
+//        }
+//        catch (IOException e) {
+//            return false;
+//        }
     }
 
     int getUltrasonicVal() throws IOException {
