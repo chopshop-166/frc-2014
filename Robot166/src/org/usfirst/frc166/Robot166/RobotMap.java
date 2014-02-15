@@ -69,7 +69,7 @@ public class RobotMap {
         driveDriveVictors = new RobotDrive(driveLeftvictor1, driveLeftvictor2,
                 driveRightvictor1, driveRightvictor2);
 
-        driveDriveVictors.setSafetyEnabled(true);
+        driveDriveVictors.setSafetyEnabled(false);
         driveDriveVictors.setExpiration(0.1);
         driveDriveVictors.setSensitivity(0.5);
         driveDriveVictors.setMaxOutput(1.0);
