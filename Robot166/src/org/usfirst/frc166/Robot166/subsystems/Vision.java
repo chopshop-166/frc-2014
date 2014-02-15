@@ -36,6 +36,8 @@ public class Vision extends Subsystem {
         timeHot = 0.0;
         SmartDashboard.putNumber("timeHot", 0.0);
 
+        // Force the vision data table to be created
+        visionDataTable.putBoolean("isHot", isHot);
     }
 
     public void checkIsHot() {

@@ -10,7 +10,6 @@
 package org.usfirst.frc166.Robot166.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc166.Robot166.Robot;
 
 /**
@@ -33,7 +32,7 @@ public class PerformVisionAction extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        //    Robot.vision.checkIsHot();
+        Robot.vision.checkIsHot();
 
     }
 
