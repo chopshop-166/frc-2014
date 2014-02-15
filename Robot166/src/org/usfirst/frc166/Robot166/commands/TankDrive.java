@@ -32,7 +32,7 @@ public class TankDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         // This implements a method from an older version of the robot builder file
-        Robot.drive.TankDrive4();
+        Robot.drive.joystickDrive4();
     }
 
     // Make this return true when this Command no longer needs to run execute()
