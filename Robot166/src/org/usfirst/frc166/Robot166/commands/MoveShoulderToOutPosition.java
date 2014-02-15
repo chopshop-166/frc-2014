@@ -44,13 +44,13 @@ public class MoveShoulderToOutPosition extends Command {
     // Called once after isFinished returns true
     protected void end() {
         Robot.shoulder.stop();
-        Robot.shoulder.setShoulderLocation(Shoulder.Position.Out);
+        Robot.shoulder.setCurrentPosition(Shoulder.Position.Out);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
         Robot.shoulder.stop();
-        Robot.shoulder.setShoulderLocation(Shoulder.Position.Unknown);
+        Robot.shoulder.setCurrentPosition(Shoulder.Position.Unknown);
     }
 }
