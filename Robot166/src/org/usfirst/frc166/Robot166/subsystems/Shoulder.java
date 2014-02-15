@@ -85,6 +85,6 @@ public class Shoulder extends Subsystem {
     }
 
     public boolean isBallAcquired() {
-        return ballAcquiredLimit.get();
+        return !ballAcquiredLimit.get();
     }
 }
