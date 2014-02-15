@@ -15,9 +15,7 @@ import org.usfirst.frc166.Robot166.Robot;
  */
 public class DriveStraight extends Command {
 <<<<<<< local
-
     boolean hasDriven = false;
-
 =======
 >>>>>>> other
     public DriveStraight() {
