@@ -11,6 +11,7 @@ package org.usfirst.frc166.Robot166.subsystems;
 import org.usfirst.frc166.Robot166.RobotMap;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
@@ -37,10 +38,13 @@ public class Transmission extends Subsystem {
     //Function to set transmission to high speed
     public void shiftToHighGear() {
         solenoid.set(false); // Turns off Solenoid
+        SmartDashboard.putString("Gear", "High"); // Print gear to smartdashboard
     }
     //Function to set transmission to low speed
     public void shiftToLowGear() {
         solenoid.set(true); // Turns on Solenoid
+        SmartDashboard.putString("Gear", "Low"); // Print gear to smartdashboard
+
     }
     //Function to set transmission to high speed
     public boolean isReady() {
