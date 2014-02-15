@@ -17,8 +17,6 @@ import org.usfirst.frc166.Robot166.Robot;
  */
 public class PerformVisionAction extends Command {
 
-    int timer = 0;
-
     public PerformVisionAction() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -34,9 +32,7 @@ public class PerformVisionAction extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (Robot.timing.getCurrentAutonomousTime() > .5) {
-            Robot.vision.checkIsHot();
-        }
+        Robot.vision.checkIsHot();
 
     }
 

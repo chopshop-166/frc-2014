@@ -19,8 +19,7 @@ public class PerformAutonomous extends CommandGroup {
 
     public PerformAutonomous() {
         addSequential(new ShiftTransmissionPower());
-        addSequential(new PerformVisionAction());
-        addSequential(new DriveStraight());
+        addSequential(new DriveStraight(), 1);
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

@@ -33,10 +33,7 @@ public class DriveStraight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if ((Robot.vision.getTimeHot() > 0) && (Robot.timing.getCurrentAutonomousTime() > 1)) {
-            Robot.drive.driveStraightNoGyro();
-        }
-        //Robot.drive.driveStraight(); // Commented out for Week zero testing purposes
+        Robot.drive.driveStraight();
     }
 
     // Make this return true when this Command no longer needs to run execute()

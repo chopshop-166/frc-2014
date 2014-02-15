@@ -63,15 +63,6 @@ public class Drive extends Subsystem {
             }
         }
     }
-
-    public void driveStraightNoGyro() {
-        double startTime = Robot.timing.getCurrentAutonomousTime();
-        while ((Robot.timing.getCurrentAutonomousTime() - startTime) < 1) {
-            driveVictors.drive(DRIVE_SPEED, 0.0);
-        }
-        driveVictors.drive(0.0, 0.0);
-
-    }
 //determines whether wall is close enough for stop
 
     public boolean isWallNear() {
