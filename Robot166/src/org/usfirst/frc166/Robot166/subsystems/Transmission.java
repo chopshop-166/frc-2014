@@ -12,11 +12,8 @@ package org.usfirst.frc166.Robot166.subsystems;
 import org.usfirst.frc166.Robot166.RobotMap;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
-<<<<<<< local
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-=======
 
->>>>>>> other
 /**
  *
  */
