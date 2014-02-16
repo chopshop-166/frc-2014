@@ -22,12 +22,7 @@ char incomingByte ;
 
 
 NewPing sonar1(S1_TRIGGER_PIN , S1_ECHO_PIN, MAX_DISTANCE ); // NewPing setup of pins and maximum distance.
-
-
-
-void setup() {
-  Serial.begin(115200);
-
+ 
 }
 
 void loop() {
