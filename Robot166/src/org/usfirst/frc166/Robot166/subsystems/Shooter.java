@@ -28,7 +28,7 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public static final double MOTORSPEED = .8;
+    public static final double MOTORSPEED = 1;
     //Return whether Reed value is true or false
     public boolean isCockedBack() {
         return !shooterReady.get();
