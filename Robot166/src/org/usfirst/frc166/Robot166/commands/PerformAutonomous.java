@@ -19,9 +19,10 @@ public class PerformAutonomous extends CommandGroup {
 
     public PerformAutonomous() {
         addSequential(new ShiftTransmissionPower());
+
         addSequential(new PerformVisionAction(), 2);
-        addParallel(new MoveShoulderToOutPosition());
-        addSequential(new DriveStraight()); //removed timeout temp. during testing
+        //addParallel(new MoveShoulderToOutPosition());
+        //addSequential(new DriveStraight()); //removed timeout temp. during testing
         addSequential(new AutonomousWait());
         //addSequential(new ReleaseShooter());
         //addSequential(new PullShooterBack());
