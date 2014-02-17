@@ -60,6 +60,8 @@ class serialcontroller(object):
 
             logging.info("reading...")
 
+            self.ser.flushInput() # throw away old data
+
             instring = self.ser.readline()
             
             if DEBUG: 
@@ -78,9 +80,9 @@ class Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
 
-        arduino.sendChar("1")
+#        arduino.sendChar("1")
         distance = arduino.readdata().strip()
-        print "distance: ", distance
+        print "Distance: ", distance
         self.wfile.write(distance)
         
 ########################################################################
