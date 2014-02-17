@@ -13,14 +13,13 @@ public class AutoShoot extends CommandGroup {
 
         addParallel(new MoveShoulderToHomePosition());
         addParallel(new SpinRollerToRetrieveBall());
+        addSequential(new WaitForBallAcquired());
+        addSequential(new MoveBallManipulatorUp());
         addSequential(new WaitForBallLoaded());
         addParallel(new StopRollerSpinning());
-        addParallel(new MoveShoulderToLoadPosition());
+        addParallel(new MoveShoulderToOutPosition());
         addSequential(new ReleaseShooter());
         addSequential(new PullShooterBack());
-        
-       
-        
 
     }
 }
