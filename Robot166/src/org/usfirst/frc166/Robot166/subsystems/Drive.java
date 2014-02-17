@@ -43,7 +43,7 @@ public class Drive extends Subsystem {
 //method that causes the robot to drive using joysticks.
 
     public void joystickDrive4() {
-        double deadZone = 0.05;
+        double deadZone = 0.08;
         if (((Robot.oi.getLeftDriveJoy().getY() > deadZone) && (Robot.oi.getRightDriveJoy().getY() > deadZone))
                 || ((Robot.oi.getLeftDriveJoy().getY() < -deadZone) && (Robot.oi.getRightDriveJoy().getY() < -deadZone))) {
             driveVictors.tankDrive(-Robot.oi.getLeftDriveJoy().getY(),
