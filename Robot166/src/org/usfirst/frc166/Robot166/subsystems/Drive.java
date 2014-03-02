@@ -43,19 +43,18 @@ public class Drive extends Subsystem {
 //method that causes the robot to drive using joysticks.
 
     public void joystickDrive4() {
-        double deadZone = 0.08;
-        if (((Robot.oi.getLeftDriveJoy().getY() > deadZone) && (Robot.oi.getRightDriveJoy().getY() > deadZone))
-                || ((Robot.oi.getLeftDriveJoy().getY() < -deadZone) && (Robot.oi.getRightDriveJoy().getY() < -deadZone))) {
-            driveVictors.tankDrive(-Robot.oi.getLeftDriveJoy().getY(),
-                    -Robot.oi.getRightDriveJoy().getY(), true);
-            SmartDashboard.putString("DriveState", "Straight/Backwards");
-        }
-        else {
-            double maxLeftJoy = Math.max(Math.abs(Robot.oi.getLeftDriveJoy().getY()), 0.15) * (Robot.oi.getLeftDriveJoy().getY() / Math.abs(Robot.oi.getLeftDriveJoy().getY()));
-            double maxRightJoy = Math.max(Math.abs(Robot.oi.getRightDriveJoy().getY()), 0.15) * (Robot.oi.getRightDriveJoy().getY() / Math.abs(Robot.oi.getRightDriveJoy().getY()));
-            driveVictors.tankDrive(-maxLeftJoy, -maxRightJoy, false);
-            SmartDashboard.putString("DriveState", "Turning");
-        }
+        /* double deadZone = 0.08;
+         * if (((Robot.oi.getLeftDriveJoy().getY() > deadZone) && (Robot.oi.getRightDriveJoy().getY() > deadZone))
+         * || ((Robot.oi.getLeftDriveJoy().getY() < -deadZone) && (Robot.oi.getRightDriveJoy().getY() < -deadZone))) { */
+        driveVictors.tankDrive(-Robot.oi.getLeftDriveJoy().getY(), -Robot.oi.getRightDriveJoy().getY(), true);
+            //SmartDashboard.putString("DriveState", "Straight/Backwards");
+        /* }
+         * else {
+         * double maxLeftJoy = Math.max(Math.abs(Robot.oi.getLeftDriveJoy().getY()), 0.15) * (Robot.oi.getLeftDriveJoy().getY() / Math.abs(Robot.oi.getLeftDriveJoy().getY()));
+         * double maxRightJoy = Math.max(Math.abs(Robot.oi.getRightDriveJoy().getY()), 0.15) * (Robot.oi.getRightDriveJoy().getY() / Math.abs(Robot.oi.getRightDriveJoy().getY()));
+         * driveVictors.tankDrive(-maxLeftJoy, -maxRightJoy, false);
+         * SmartDashboard.putString("DriveState", "Turning");
+         * } */
     }
 
     //Method causes the robt to drive toward the gyro 0 value
