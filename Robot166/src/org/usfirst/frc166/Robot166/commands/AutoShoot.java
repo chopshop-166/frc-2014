@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class AutoShoot extends CommandGroup {
 
     public AutoShoot() {
-
+        addSequential(new PullShooterBack());
         addParallel(new MoveShoulderToLoadPosition());
         addParallel(new SpinRollerToRetrieveBall());
         addSequential(new WaitForBallLoaded());
