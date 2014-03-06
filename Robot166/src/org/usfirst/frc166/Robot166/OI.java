@@ -60,7 +60,7 @@ public class OI {
         rightDriveJoy = new Joystick(2);
         
         alignDistance = new JoystickButton(rightDriveJoy, 2);
-        alignDistance.whileHeld(new DriveStraight());
+        alignDistance.whenPressed(new DriveStraight());
         shiftLowSpeedButton = new JoystickButton(rightDriveJoy, 4);
         shiftLowSpeedButton.whenPressed(new ShiftTransmissionPower());
         shiftHighSpeedButton = new JoystickButton(rightDriveJoy, 5);
