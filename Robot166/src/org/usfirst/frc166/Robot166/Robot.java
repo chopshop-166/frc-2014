@@ -73,8 +73,7 @@ public class Robot extends IterativeRobot {
         vision.initHotValues();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) {
-            autonomousCommand.start();
-        }
+            autonomousCommand.start();        }
     }
     /**
      * This function is called periodically during autonomous

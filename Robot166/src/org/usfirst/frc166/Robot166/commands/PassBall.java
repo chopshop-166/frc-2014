@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class PassBall extends CommandGroup {
 
     public PassBall() {
-        addSequential(new MoveShoulderToHomePosition());
         addSequential(new SpinRollerToEjectBall());
+        addSequential(new MoveShoulderToHomePosition());
         addSequential(new WaitCommand(1));
         addSequential(new StopRollerSpinning());
     }

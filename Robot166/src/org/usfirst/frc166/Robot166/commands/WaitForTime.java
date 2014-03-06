@@ -26,10 +26,10 @@ public class WaitForTime extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double teleopLeft = Robot.timing.getRemainingTeleopTime();
-        if (teleopLeft < Robot.prefs.getDouble("TimeLeftBeforeSafe", 0)) {
-            Robot.timing.makeShooterSafe();
-        }
+//        double teleopLeft = Robot.timing.getRemainingTeleopTime();
+//        if (teleopLeft < Robot.prefs.getDouble("TimeLeftBeforeSafe", 0)) {
+//            //Robot.timing.makeShooterSafe(); //removed this due to problems being caused at competetion.
+//        }
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
