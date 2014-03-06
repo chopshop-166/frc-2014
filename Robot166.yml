@@ -33,33 +33,17 @@ Children:
       Children: []
       Properties:
         Input Module (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id001 ['1', '2']
+          choices: &id006 ['1', '2']
           default: '1'
           name: Input Module (Analog)
-          validators: &id002 [AnalogInput]
+          validators: &id007 [AnalogInput]
           value: '1'
         Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id003 ['1', '2', '3', '4', '5', '6', '7', '8']
+          choices: &id008 ['1', '2', '3', '4', '5', '6', '7', '8']
           default: '1'
           name: Input Channel (Analog)
-          validators: &id004 [AnalogInput]
+          validators: &id009 [AnalogInput]
           value: '2'
-    - Name: Ultrasonic
-      Base: Analog Input
-      Children: []
-      Properties:
-        Input Module (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
-          default: '1'
-          name: Input Module (Analog)
-          validators: *id002
-          value: '1'
-        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id003
-          default: '1'
-          name: Input Channel (Analog)
-          validators: *id004
-          value: '5'
     - Name: Drive Victors
       Base: Robot Drive 4
       Children:
@@ -68,88 +52,88 @@ Children:
         Children: []
         Properties:
           Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-            choices: &id005 ['1', '2']
+            choices: &id001 ['1', '2']
             default: '1'
             name: Output Module (Digital)
-            validators: &id006 [PWMOutput]
+            validators: &id002 [PWMOutput]
             value: '1'
           Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: &id007 [Victor, Jaguar, Talon]
+            choices: &id003 [Victor, Jaguar, Talon]
             default: Victor
             name: Type
             validators: null
             value: Victor
           Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-            choices: &id008 ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+            choices: &id004 ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
             default: '1'
             name: Output Channel (PWM)
-            validators: &id009 [PWMOutput]
+            validators: &id005 [PWMOutput]
             value: '1'
       - Name: Left victor 2
         Base: Speed Controller
         Children: []
         Properties:
           Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id005
+            choices: *id001
             default: '1'
             name: Output Module (Digital)
-            validators: *id006
+            validators: *id002
             value: '1'
           Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id007
+            choices: *id003
             default: Victor
             name: Type
             validators: null
             value: Victor
           Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id008
+            choices: *id004
             default: '1'
             name: Output Channel (PWM)
-            validators: *id009
+            validators: *id005
             value: '2'
       - Name: Right victor 1
         Base: Speed Controller
         Children: []
         Properties:
           Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id005
+            choices: *id001
             default: '1'
             name: Output Module (Digital)
-            validators: *id006
+            validators: *id002
             value: '1'
           Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id007
+            choices: *id003
             default: Victor
             name: Type
             validators: null
             value: Victor
           Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id008
+            choices: *id004
             default: '1'
             name: Output Channel (PWM)
-            validators: *id009
+            validators: *id005
             value: '3'
       - Name: Right victor 2
         Base: Speed Controller
         Children: []
         Properties:
           Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id005
+            choices: *id001
             default: '1'
             name: Output Module (Digital)
-            validators: *id006
+            validators: *id002
             value: '1'
           Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id007
+            choices: *id003
             default: Victor
             name: Type
             validators: null
             value: Victor
           Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id008
+            choices: *id004
             default: '1'
             name: Output Channel (PWM)
-            validators: *id009
+            validators: *id005
             value: '4'
       Properties:
         Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 0.5,
@@ -192,6 +176,22 @@ Children:
           value: Drive Left victor 1
         Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
           name: Safety Expiration Time, validators: null, value: 0.1}
+    - Name: Ultrasonic
+      Base: Analog Input
+      Children: []
+      Properties:
+        Input Module (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '1'
+          name: Input Module (Analog)
+          validators: *id007
+          value: '1'
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: '1'
+          name: Input Channel (Analog)
+          validators: *id009
+          value: '5'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: Tank Drive}
@@ -203,22 +203,22 @@ Children:
       Children: []
       Properties:
         Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id005
+          choices: *id001
           default: '1'
           name: Output Module (Digital)
-          validators: *id006
+          validators: *id002
           value: '1'
         Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id007
+          choices: *id003
           default: Victor
           name: Type
           validators: null
           value: Victor
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
+          choices: *id004
           default: '1'
           name: Output Channel (PWM)
-          validators: *id009
+          validators: *id005
           value: '5'
     - Name: Potentiometer
       Base: Potentiometer
@@ -296,22 +296,22 @@ Children:
       Children: []
       Properties:
         Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id005
+          choices: *id001
           default: '1'
           name: Output Module (Digital)
-          validators: *id006
+          validators: *id002
           value: '1'
         Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id007
+          choices: *id003
           default: Victor
           name: Type
           validators: null
           value: Victor
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
+          choices: *id004
           default: '1'
           name: Output Channel (PWM)
-          validators: *id009
+          validators: *id005
           value: '6'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
@@ -324,22 +324,22 @@ Children:
       Children: []
       Properties:
         Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id005
+          choices: *id001
           default: '1'
           name: Output Module (Digital)
-          validators: *id006
+          validators: *id002
           value: '1'
         Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id007
+          choices: *id003
           default: Victor
           name: Type
           validators: null
           value: Victor
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
+          choices: *id004
           default: '1'
           name: Output Channel (PWM)
-          validators: *id009
+          validators: *id005
           value: '7'
     - Name: Shooter Ready
       Base: Digital Input
@@ -430,16 +430,16 @@ Children:
       Children: []
       Properties:
         Input Module (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
+          choices: *id006
           default: '1'
           name: Input Module (Analog)
-          validators: *id002
+          validators: *id007
           value: '1'
         Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id003
+          choices: *id008
           default: '1'
           name: Input Channel (Analog)
-          validators: *id004
+          validators: *id009
           value: '4'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
@@ -639,7 +639,7 @@ Children:
           default: whileHeld
           name: When to Run
           validators: null
-          value: whenPressed
+          value: whileHeld
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id021
@@ -894,6 +894,6 @@ Properties:
     validators: null, value: 166}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
-  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Matt\NetBeansProjects',
+  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Dan\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
     value: .\}
