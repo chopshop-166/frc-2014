@@ -34,7 +34,7 @@ public class DriveStraight extends Command {
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.drive.isWallNear();
+            return Robot.drive.isWallNear();
     }
     // Called once after isFinished returns true
     protected void end() {

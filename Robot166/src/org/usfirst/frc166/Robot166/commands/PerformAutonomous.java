@@ -18,18 +18,22 @@ import org.usfirst.frc166.Robot166.Robot;
 public class PerformAutonomous extends CommandGroup {
 
     public PerformAutonomous() {
-        addParallel(new ShiftTransmissionPower());
+        
 
-        //addSequential(new PerformVisionAction(), 2);
-        addParallel(new PullShooterBack());
-        addSequential(new MoveBallManipulatorUp());
-        addSequential(new MoveShoulderToOutPosition(), 2);
-        addSequential(new DriveStraight());
-        //addSequential(new AutonomousWait(), 3);
-        addSequential(new ReleaseShooter());
-        addParallel(new PullShooterBack());
-        addSequential(new MoveShoulderToHomePosition());
-        addSequential(new ShiftTransmissionSpeed());
+        //Old autonomous, "mostly works"
+//        addParallel(new PullShooterBack());
+//        addSequential(new AutonomousWait(),1.0);
+//        addSequential(new MoveBallManipulatorUp());
+//        addSequential(new MoveShoulderToOutPosition(), 2);
+//        addSequential(new DriveStraightNoSonar(),1.75);
+//        addSequential(new DriveStraight());
+//        //addSequential(new AutonomousWait(), 3);
+//         //REMEMER TO UNCMMENT BEFRE MATCH
+//        addSequential(new ReleaseShooter());
+//        addParallel(new PullShooterBack());
+//        addSequential(new MoveShoulderToHomePosition());
+//        addSequential(new ShiftTransmissionSpeed());
+        
 
         //addParallel(new PerformVisionAction());
         //addSequential(new PerformVisionAction());
@@ -48,5 +52,12 @@ public class PerformAutonomous extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+
+        addSequential(new ShiftTransmissionPower());
+        addParallel(new PullShooterBack());
+        addSequential(new DriveStraightNoSonar(),2.25);
+        //addSequential(new AutonomousWait(),3);//testing wait
+        addSequential(new DriveStraight());
+        addSequential(new AutoShoot());
     }
 }

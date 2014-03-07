@@ -11,7 +11,6 @@ package org.usfirst.frc166.Robot166.subsystems;
 import org.usfirst.frc166.Robot166.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-
 /**
  *
  */

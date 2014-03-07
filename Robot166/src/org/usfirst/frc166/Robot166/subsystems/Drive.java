@@ -35,9 +35,10 @@ public class Drive extends Subsystem {
     private static final double DRIVE_SPEED = .7; //added to this without testing;
     private static final double DRIVE_TURN_CONSTANT = 0.025;
     private static final double GYRO_DEADZONE = 0.5;
-    private static final int DISTANCE_TO_WALL = 78;
+    private static final int DISTANCE_TO_WALL = 79;
     private static final double ULTRASONIC_VOLTSTOIN = 1 / 0.0098;
     private double distance = 0;
+    private int distanceCount = 0;
 //method that causes the robot to drive using joysticks.
     public void joystickDrive4() {
         /* double deadZone = 0.08;
@@ -50,7 +51,7 @@ public class Drive extends Subsystem {
          * double maxLeftJoy = Math.max(Math.abs(Robot.oi.getLeftDriveJoy().getY()), 0.15) * (Robot.oi.getLeftDriveJoy().getY() / Math.abs(Robot.oi.getLeftDriveJoy().getY()));
          * double maxRightJoy = Math.max(Math.abs(Robot.oi.getRightDriveJoy().getY()), 0.15) * (Robot.oi.getRightDriveJoy().getY() / Math.abs(Robot.oi.getRightDriveJoy().getY()));
          * driveVictors.tankDrive(-maxLeftJoy, -maxRightJoy, false);
-         * SmartDashboard.putString("DriveState", "Turning");
+         * SmartDashboard.putString("DriveState", "Turnin-g");
          * } */
     }
     //Method causes the robt to drive toward the gyro 0 value
@@ -64,6 +65,10 @@ public class Drive extends Subsystem {
         SmartDashboard.putNumber("Gyro", Robot.drive.gyro.getAngle());
         driveVictors.drive(DRIVE_SPEED, -1 * Robot.drive.gyro.getAngle() * DRIVE_TURN_CONSTANT);
     }
+    public void driveStraightFast() {
+        SmartDashboard.putNumber("Gyro", Robot.drive.gyro.getAngle());
+        driveVictors.drive(DRIVE_SPEED + .25, -1 * Robot.drive.gyro.getAngle() * DRIVE_TURN_CONSTANT);
+    }
 //determines whether wall is close enough for stop
     public void driveStraightNoGyro() {
         //double startTime = Robot.timing.getCurrentAutonomousTime();
@@ -72,6 +77,7 @@ public class Drive extends Subsystem {
         //}
         //driveVictors.drive(0.0, 0.0);
     }
+    
     public void zeroDistance() {
         distance = 0;
     }
@@ -80,7 +86,15 @@ public class Drive extends Subsystem {
         SmartDashboard.putNumber("wall distance: ", distance);
         System.out.println(distance);
         System.out.println(Robot.timing.getCurrentAutonomousTime());
-        if ((distance < DISTANCE_TO_WALL) && (distance > 2)) {
+        if ((distance < DISTANCE_TO_WALL) && (distance > 2)){
+            distanceCount += 1;
+        }
+        else
+        {
+            distanceCount = 0;
+        }
+        
+        if (distanceCount >= 2){
             SmartDashboard.putString("is wall near?: ", "yep");
             return true;
         }

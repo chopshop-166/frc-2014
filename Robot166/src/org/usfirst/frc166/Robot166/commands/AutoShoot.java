@@ -22,6 +22,7 @@ public class AutoShoot extends CommandGroup {
         addSequential(new ReleaseShooter());
         addSequential(new PullShooterBack());
         addSequential(new MoveBallManipulatorDown());
+        addSequential(new MoveShoulderToHomePosition());
 
     }
 }
