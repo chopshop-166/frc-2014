@@ -24,7 +24,7 @@ public class AutoFeed extends CommandGroup {
         addSequential(new MoveShoulderToOutPosition());
         addSequential(new WaitForBallAcquired());
         addSequential(new StopRollerSpinning());
-        addSequential(new MoveShoulderToHomePosition());
+        addSequential(new MoveShoulderToOutPosition());
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

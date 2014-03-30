@@ -12,7 +12,7 @@ public class AutoShoot extends CommandGroup {
 
     public AutoShoot() {
         addSequential(new PullShooterBack());
-        addParallel(new MoveShoulderToLoadPosition());
+        addParallel(new MoveShoulderToInPosition());
         addParallel(new SpinRollerToRetrieveBall());
         addSequential(new WaitForBallLoaded());
         addSequential(new MoveBallManipulatorUp());
@@ -22,7 +22,7 @@ public class AutoShoot extends CommandGroup {
         addSequential(new ReleaseShooter());
         addSequential(new PullShooterBack());
         addSequential(new MoveBallManipulatorDown());
-        addSequential(new MoveShoulderToHomePosition());
+        addSequential(new MoveShoulderToOutPosition());
 
     }
 }

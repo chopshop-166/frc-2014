@@ -26,11 +26,8 @@ public class RobotMap {
     public static SpeedController driveRightvictor2;
     public static RobotDrive driveDriveVictors;
     public static AnalogChannel driveUltrasonic;
-    public static SpeedController shoulderMotor;
-    public static AnalogChannel shoulderPotentiometer;
     public static DigitalInput shoulderBallAcquiredLimit;
-    public static DigitalInput shoulderOutGuardLimit;
-    public static DigitalInput shoulderInGuardLimt;
+    public static DoubleSolenoid shoulderSolenoid;
     public static SpeedController rollerMotor;
     public static SpeedController shooterMotor;
     public static DigitalInput shooterShooterReady;
@@ -70,20 +67,11 @@ public class RobotMap {
         driveUltrasonic = new AnalogChannel(1, 5);
 	LiveWindow.addSensor("Drive", "Ultrasonic", driveUltrasonic);
         
-        shoulderMotor = new Victor(1, 5);
-	LiveWindow.addActuator("Shoulder", "Motor", (Victor) shoulderMotor);
-        
-        shoulderPotentiometer = new AnalogChannel(1, 3);
-	LiveWindow.addSensor("Shoulder", "Potentiometer", shoulderPotentiometer);
-        
         shoulderBallAcquiredLimit = new DigitalInput(1, 3);
 	LiveWindow.addSensor("Shoulder", "Ball Acquired Limit", shoulderBallAcquiredLimit);
         
-        shoulderOutGuardLimit = new DigitalInput(1, 4);
-	LiveWindow.addSensor("Shoulder", "Out Guard Limit", shoulderOutGuardLimit);
-        
-        shoulderInGuardLimt = new DigitalInput(1, 5);
-	LiveWindow.addSensor("Shoulder", "In Guard Limt", shoulderInGuardLimt);
+        shoulderSolenoid = new DoubleSolenoid(1, 4, 5);      
+	
         
         rollerMotor = new Victor(1, 6);
 	LiveWindow.addActuator("Roller", "Motor", (Victor) rollerMotor);

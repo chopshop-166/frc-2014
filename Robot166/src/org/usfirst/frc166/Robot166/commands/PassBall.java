@@ -19,7 +19,7 @@ public class PassBall extends CommandGroup {
 
     public PassBall() {
         addSequential(new SpinRollerToEjectBall());
-        addSequential(new MoveShoulderToHomePosition());
+        addSequential(new MoveShoulderToInPosition());
         addSequential(new WaitCommand(1));
         addSequential(new StopRollerSpinning());
     }

@@ -14,7 +14,6 @@ import org.usfirst.frc166.Robot166.Robot;
  *
  */
 public class AutonomousWait extends Command {
-
     public AutonomousWait() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -23,7 +22,6 @@ public class AutonomousWait extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
