@@ -38,26 +38,20 @@ public class PerformAutonomous extends CommandGroup {
         //addParallel(new PerformVisionAction());
         //addSequential(new PerformVisionAction());
         //addParallel(new DriveStraight());
-        // Add Commands here:e
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
 
+
+//        addSequential(new ShiftTransmissionPower());
+//        addParallel(new PullShooterBack());
+//        addSequential(new DriveStraightNoSonar(),2.25);
+//        //addSequential(new AutonomousWait(),3);//testing wait
+//        addSequential(new DriveStraight());
+//        addSequential(new AutoShoot());
+        
         addSequential(new ShiftTransmissionPower());
-        addParallel(new PullShooterBack());
-        addSequential(new DriveStraightNoSonar(),2.25);
-        //addSequential(new AutonomousWait(),3);//testing wait
-        addSequential(new DriveStraight());
-        addSequential(new AutoShoot());
+        addSequential(new DriveStraightNoSonar(),5);
+        addSequential(new PassBall());
+        
+        
+       
     }
 }
