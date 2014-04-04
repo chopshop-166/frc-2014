@@ -37,8 +37,13 @@ public class Drive extends Subsystem {
     private static final double GYRO_DEADZONE = 0.5;
     private static final int DISTANCE_TO_WALL = 79;
     private static final double ULTRASONIC_VOLTSTOIN = 1 / 0.0098;
+    private static final double OFFSET_PROPORTION = 1/16;
+    private static final double OFFSET_DEADZONE = 4;
+    private static final double OFFSET_MAX_SPEED = .7;
     private double distance = 0;
     private int distanceCount = 0;
+    private double offset = 0;
+    private double alignSpeed = 0;
 //method that causes the robot to drive using joysticks.
     public void joystickDrive4() {
         /* double deadZone = 0.08;
@@ -78,6 +83,24 @@ public class Drive extends Subsystem {
         //driveVictors.drive(0.0, 0.0);
     }
     
+    public void alignToShootDistance(){
+        distance = getCrioUltrasonicVal();
+        offset = distance - DISTANCE_TO_WALL;
+        if(offset * OFFSET_PROPORTION > OFFSET_MAX_SPEED){
+            alignSpeed = OFFSET_MAX_SPEED;
+        }else{
+            alignSpeed = offset * OFFSET_PROPORTION;
+            }
+        if(offset > OFFSET_DEADZONE || offset < -OFFSET_DEADZONE){
+            driveVictors.drive(alignSpeed, -1 * Robot.drive.gyro.getAngle() * DRIVE_TURN_CONSTANT);          
+        }  
+    }
+    
+    public boolean isAtShootingRange(){
+        return (offset > 0 && offset < OFFSET_DEADZONE) || (offset < 0 && offset < -OFFSET_DEADZONE);
+    }
+    
+    
     public void zeroDistance() {
         distance = 0;
     }
@@ -103,6 +126,7 @@ public class Drive extends Subsystem {
             return false;
         }
     }
+    
     double getCrioUltrasonicVal() {
         return (ultrasonic.getVoltage() * ULTRASONIC_VOLTSTOIN);
     }

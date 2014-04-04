@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AlignToShootDistance extends CommandGroup {
+public class AutoAlign extends CommandGroup {
     
-    public  AlignToShootDistance() {
+    public  AutoAlign() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -29,7 +29,7 @@ public class AlignToShootDistance extends CommandGroup {
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
         addSequential(new ShiftTransmissionPower());
-        addSequential(new DriveStraight());
+        addSequential(new AlignRobotToShootingDistance());
         addSequential(new ShiftTransmissionSpeed());
         
 
