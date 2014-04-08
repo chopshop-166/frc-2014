@@ -18,40 +18,43 @@ import org.usfirst.frc166.Robot166.Robot;
 public class PerformAutonomous extends CommandGroup {
 
     public PerformAutonomous() {
-        
 
         //Old autonomous, "mostly works"
-//        addParallel(new PullShooterBack());
-//        addSequential(new AutonomousWait(),1.0);
-//        addSequential(new MoveBallManipulatorUp());
-//        addSequential(new MoveShoulderToOutPosition(), 2);
-//        addSequential(new DriveStraightNoSonar(),1.75);
-//        addSequential(new DriveStraight());
-//        //addSequential(new AutonomousWait(), 3);
-//         //REMEMER TO UNCMMENT BEFRE MATCH
-//        addSequential(new ReleaseShooter());
-//        addParallel(new PullShooterBack());
-//        addSequential(new MoveShoulderToHomePosition());
-//        addSequential(new ShiftTransmissionSpeed());
-        
-
+        /*
+         * addParallel(new PullShooterBack());
+         * addSequential(new AutonomousWait(),1.0);
+         * addSequential(new MoveBallManipulatorUp());
+         * addSequential(new MoveShoulderToOutPosition(), 2);
+         * addSequential(new DriveStraightNoSonar(),1.75);
+         * addSequential(new DriveStraight());
+         * //addSequential(new AutonomousWait(), 3);
+         * //REMEMER TO UNCMMENT BEFRE MATCH
+         * addSequential(new ReleaseShooter());
+         * addParallel(new PullShooterBack());
+         * addSequential(new MoveShoulderToHomePosition());
+         * addSequential(new ShiftTransmissionSpeed());
+         */
+        //WORKING HIGH GOAL AUTONOMOUS
+        /*
+         * addSequential(new ShiftTransmissionPower());
+         * addSequential(new DriveStraightNoSonar(), 1.75);
+         * addSequential(new DriveStraight());
+         * addSequential(new AutoShoot());
+         * addSequential(new ShiftTransmissionSpeed());
+         */
         //addParallel(new PerformVisionAction());
         //addSequential(new PerformVisionAction());
         //addParallel(new DriveStraight());
-
-
 //        addSequential(new ShiftTransmissionPower());
 //        addParallel(new PullShooterBack());
 //        addSequential(new DriveStraightNoSonar(),2.25);
 //        //addSequential(new AutonomousWait(),3);//testing wait
 //        addSequential(new DriveStraight());
 //        addSequential(new AutoShoot());
-        
+        //LOW GOAL AUTONOMOUS HERE
         addSequential(new ShiftTransmissionPower());
-        addSequential(new DriveStraightNoSonar(),5);
+        addSequential(new DriveStraightNoSonar(), 5);
         addSequential(new PassBall());
-        
-        
-       
+
     }
 }
