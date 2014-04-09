@@ -34,14 +34,14 @@ public class PerformAutonomous extends CommandGroup {
          * addSequential(new MoveShoulderToHomePosition());
          * addSequential(new ShiftTransmissionSpeed());
          */
+        
         //WORKING HIGH GOAL AUTONOMOUS
-        /*
-         * addSequential(new ShiftTransmissionPower());
-         * addSequential(new DriveStraightNoSonar(), 1.75);
-         * addSequential(new DriveStraight());
-         * addSequential(new AutoShoot());
-         * addSequential(new ShiftTransmissionSpeed());
-         */
+          addSequential(new ShiftTransmissionPower());
+          addSequential(new DriveStraightNoSonar(), 1.75);
+          addSequential(new DriveStraight());
+          addSequential(new AutoShoot());
+          addSequential(new ShiftTransmissionSpeed());
+         
         //addParallel(new PerformVisionAction());
         //addSequential(new PerformVisionAction());
         //addParallel(new DriveStraight());
@@ -51,10 +51,11 @@ public class PerformAutonomous extends CommandGroup {
 //        //addSequential(new AutonomousWait(),3);//testing wait
 //        addSequential(new DriveStraight());
 //        addSequential(new AutoShoot());
+        
         //LOW GOAL AUTONOMOUS HERE
-        addSequential(new ShiftTransmissionPower());
-        addSequential(new DriveStraightNoSonar(), 5);
-        addSequential(new PassBall());
+//        addSequential(new ShiftTransmissionPower());
+//        addSequential(new DriveStraightNoSonar(), 5);
+//        addSequential(new PassBall());
 
     }
 }
